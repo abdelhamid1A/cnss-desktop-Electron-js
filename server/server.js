@@ -3,6 +3,28 @@ const app = express()
 require('dotenv').config()
 // const Sequelize = require('sequelize')
 const db = require('./models')
+const swaggerJsDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
+
+const swaggerOptions = {
+    swaggerDefinition: {
+      openapi: '3.0.0',
+      info: {
+        version: "1.0.0",
+        title: "CNSS API",
+        description: "CNSS API Information",
+        contact: {
+          name: "AZIZI ABDELHAMID"
+        },
+        servers: ["http://localhost:4000"]
+      }
+    },
+    // ['.routes/*.js']
+    apis: ['./routes/*.js']
+  };
+  
+  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const agentRout = require('./routes/agentRouts')
 const employeeRout = require('./routes/employeeRouts')
