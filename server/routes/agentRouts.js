@@ -33,4 +33,5 @@ router.get('/',agentController.getData)
 router.post('/',agentController.creatAgent)
 router.delete('/:id',agentController.deleteAgent)
 router.put('/:id',agentController.updateAgent)
+router.post('/login',agentController.loginAgent)
 module.exports = router

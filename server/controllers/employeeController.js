@@ -12,8 +12,10 @@ module.exports = {
             });
     },
     creatEmployee(req, res) {
+        const token = req.header('auth-token')
+        const AgentId = jwt.verify(token,process.env.JWT_KEY)._id
         console.log(req.body);
-        const { user_name, email, password, AgentId, phone } = req.body
+        const { user_name, email, password, phone } = req.body
         const tempPassword = randomPassword(6)
         const matricule = randomMatricule(9)
         bcrypt.hash(tempPassword, 10, (err, hash) => {
