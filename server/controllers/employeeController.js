@@ -15,9 +15,9 @@ module.exports = {
         const token = req.header('auth-token')
         const AgentId = jwt.verify(token,process.env.JWT_KEY)._id
         console.log(req.body);
-        const { user_name, email, password, phone } = req.body
+        const { user_name, email, matricule, phone } = req.body
         const tempPassword = randomPassword(6)
-        const matricule = randomMatricule(9)
+        //const matricule = randomMatricule(9)
         bcrypt.hash(tempPassword, 10, (err, hash) => {
             if (hash) {
                 db.Employee.create({
@@ -115,7 +115,7 @@ module.exports = {
             {
             id:tokenDecode._id
             },
-            attributes:  ['id','user_name', 'phone','matricule']
+            attributes:  ['id','user_name', 'phone','matricule','createdAt','email']
         })
         if(employee){
             res.status(200).send(employee)

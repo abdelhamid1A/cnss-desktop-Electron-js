@@ -27,7 +27,7 @@ async function sendMail(password,email) {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: 'CNSS <noreplay@lupin.com>',
+      from: 'CNSS <noreplay@CNSS.com>',
       to: sendTo,
       subject: "verified ✔",
       text: "verified account ",
